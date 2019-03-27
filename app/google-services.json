@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "428677072718",
+    "firebase_url": "https://docpatients-94684.firebaseio.com",
+    "project_id": "docpatients-94684",
+    "storage_bucket": "docpatients-94684.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:428677072718:android:620f22078aa5bab4",
+        "android_client_info": {
+          "package_name": "com.ayah.docpatients"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "428677072718-o3083njmpet0p603utf06br1oe60cmkh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ayah.docpatients",
+            "certificate_hash": "8d4e87598d212bdb282d05faa7766dc9c486dbdf"
+          }
+        },
+        {
+          "client_id": "428677072718-j8m39fd7u9bprvcrqr2ii0min9eod87u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVF5_FmTaBB33WgRs_xNAVJoAvKFLfwFc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "428677072718-j8m39fd7u9bprvcrqr2ii0min9eod87u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
