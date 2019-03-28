@@ -31,18 +31,6 @@
             tools:layout_editor_absoluteX="2dp"
             tools:layout_editor_absoluteY="48dp" />
 
-        <CheckBox
-            android:id="@+id/ifDoctor"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I am a doctor" />
-
-        <CheckBox
-            android:id="@+id/ifPatient"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="I am a Patient" />
-
         <Button
             android:id="@+id/signin"
             android:layout_width="match_parent"
