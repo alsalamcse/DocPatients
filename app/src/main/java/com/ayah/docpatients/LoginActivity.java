@@ -116,11 +116,12 @@ public class LoginActivity extends AppCompatActivity {
                         Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
                         startActivity(intent1);
-                        finish();
                     }
                     else {
                         Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
+                        startActivity(intent1);
+
                     }
 
 
