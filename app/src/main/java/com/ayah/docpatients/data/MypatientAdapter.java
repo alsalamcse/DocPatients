@@ -37,19 +37,15 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
 
             final Mypatient mypatient = getItem(position); // return data object number"pos"
             TextView id = convertView.findViewById(R.id.id);
-            TextView first = convertView.findViewById(R.id.first);
-            TextView last = convertView.findViewById(R.id.last);
-            TextView phone = convertView.findViewById(R.id.phone);
+
             ImageButton edit = convertView.findViewById(R.id.edit);
             ImageButton medicines = convertView.findViewById(R.id.medicines);
-            ImageButton delete = convertView.findViewById(R.id.delete);
+//            ImageButton info = convertView.findViewById(R.id.info);
 
 
             // pout the data of the objectr on the view
-            first.setText(mypatient.getFirst());
-            last.setText(mypatient.getLast());
+
             id.setText(mypatient.getId());
-            phone.setText(mypatient.getPhone());
 
 
             edit.setOnClickListener(new View.OnClickListener() {

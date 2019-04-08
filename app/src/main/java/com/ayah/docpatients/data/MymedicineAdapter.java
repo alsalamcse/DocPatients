@@ -38,7 +38,6 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
             TextView notes = convertView.findViewById(R.id.notes);
 
             ImageButton edit = convertView.findViewById(R.id.edit);
-            ImageButton delete = convertView.findViewById(R.id.delete);
 
 
 

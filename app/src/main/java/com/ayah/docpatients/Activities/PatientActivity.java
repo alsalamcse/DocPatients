@@ -1,5 +1,6 @@
 package com.ayah.docpatients.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.ayah.docpatients.MedicinesListActivity;
 import com.ayah.docpatients.PatientsListActivity;
 import com.ayah.docpatients.R;
 import com.ayah.docpatients.data.Mymedicine;
@@ -103,17 +105,19 @@ public class PatientActivity extends AppCompatActivity {
                     patient.setOwner(auth.getCurrentUser().getEmail());
 
                     // to get the database root reference
+                    databaseReference = FirebaseDatabase.getInstance().getReference();
 
-                    String key=databaseReference.child("MyPatients").push().getKey();
+                    String key=databaseReference.child("MyPatient").push().getKey();
                     patient.setKey(id1);
 
-                    databaseReference = FirebaseDatabase.getInstance().getReference();
                     //to get uid(universal id)
-                    databaseReference.child("MyPatients").child(id1).setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    databaseReference.child("MyPatient").child(id1).setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(PatientActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
+                                Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
+                                startActivity(i);
                             }
                             else
                                 Toast.makeText(PatientActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();

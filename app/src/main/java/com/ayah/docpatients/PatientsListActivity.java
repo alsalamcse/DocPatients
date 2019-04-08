@@ -47,9 +47,9 @@ public class PatientsListActivity extends AppCompatActivity {
         fabAdd = (FloatingActionButton)findViewById(R.id.fabAdd);
 //        addPatient = (ImageButton) findViewById(R.id.addPatient);
 
-        ArrayAdapter<String>mypatientAdapter = new ArrayAdapter<String>(getBaseContext(),R.layout.patient_item);
+        mypatientAdapter = new MypatientAdapter(getBaseContext(),R.layout.patient_item);
         patientList.setAdapter(mypatientAdapter);
-
+        getAllPatients();
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +62,7 @@ public class PatientsListActivity extends AppCompatActivity {
 
     private void getAllPatients() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("MyPatients").addValueEventListener(new ValueEventListener() {
+        reference.child("MyPatient").addValueEventListener(new ValueEventListener() {
 
 
             @Override
