@@ -2,6 +2,7 @@ package com.ayah.docpatients;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -26,6 +27,7 @@ public class MedicinesListActivity extends AppCompatActivity {
     private ListView medicineList;
     private ImageButton addMedicine;
     private MymedicineAdapter mymedicineAdapter;
+    private FloatingActionButton fabAdd;
 
 
     @Override
@@ -34,13 +36,13 @@ public class MedicinesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medicines_list);
 
         medicineList = (ListView) findViewById(R.id.medicineList);
-        addMedicine = (ImageButton) findViewById(R.id.addMedicine);
+        addMedicine = (FloatingActionButton) findViewById(R.id.fabAdd);
 
         ArrayAdapter<String> mymedicineAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.patient_item);
         medicineList.setAdapter(mymedicineAdapter);
 
 
-        addMedicine.setOnClickListener(new View.OnClickListener() {
+        fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MedicinesListActivity.this, MedicineActivity.class);

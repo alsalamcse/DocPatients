@@ -110,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
 
                     //todo check if doctor logs in or patient
 
-//                    if ()
 
                     if(email.equals("roza@gmail.com") || email.equals("aya.a@gmail.com")) {
                         Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
