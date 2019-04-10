@@ -30,12 +30,15 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
 
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout. medicine_item, parent, false);
-            Mymedicine mymedicine = getItem(position); // return data object number"pos"
+
+
+           final Mymedicine mymedicine = getItem(position); // return data object number"pos"
+
             TextView name = convertView.findViewById(R.id.name);
-            TextView disease = convertView.findViewById(R.id.disease);
-            TextView method = convertView.findViewById(R.id.method);
-            TextView timesInDay = convertView.findViewById(R.id.timesInDay);
-            TextView notes = convertView.findViewById(R.id.notes);
+//            TextView disease = convertView.findViewById(R.id.disease);
+//            TextView method = convertView.findViewById(R.id.method);
+//            TextView timesInDay = convertView.findViewById(R.id.timesInDay);
+//            TextView notes = convertView.findViewById(R.id.notes);
 
             ImageButton edit = convertView.findViewById(R.id.edit);
 
@@ -44,10 +47,10 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
             // put the data of the objectr on the view
 
             name.setText(mymedicine.getName());
-            disease.setText(mymedicine.getDisease());
-            method.setText(mymedicine.getMethod());
-            timesInDay.setText(mymedicine.getTimesInDay());
-            notes.setText(mymedicine.getNotes());
+//            disease.setText(mymedicine.getDisease());
+//            method.setText(mymedicine.getMethod());
+//            timesInDay.setText(mymedicine.getTimesInDay());
+//            notes.setText(mymedicine.getNotes());
 
 
 
