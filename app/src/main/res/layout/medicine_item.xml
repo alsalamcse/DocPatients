@@ -14,10 +14,11 @@
         <TextView
             android:id="@+id/name"
             android:layout_width="268dp"
-            android:layout_height="51dp"
+            android:layout_height="52dp"
             android:ems="10"
             android:hint="Medicine name"
             android:inputType="textPersonName"
+            android:textSize="24sp"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="0dp" />
 
