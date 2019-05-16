@@ -21,7 +21,7 @@
         android:id="@+id/edit"
         android:layout_width="57dp"
         android:layout_height="52dp"
-        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:background="@drawable/e"
         tools:layout_editor_absoluteX="320dp"
         tools:layout_editor_absoluteY="464dp" />
 
@@ -29,7 +29,7 @@
         android:id="@+id/medicines"
         android:layout_width="57dp"
         android:layout_height="52dp"
-        app:srcCompat="@mipmap/ic_med"
+        android:background="@mipmap/ic_med"
         tools:layout_editor_absoluteX="320dp"
         tools:layout_editor_absoluteY="464dp" />
 

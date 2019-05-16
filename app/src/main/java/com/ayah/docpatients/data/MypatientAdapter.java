@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.ayah.docpatients.Activities.PatientActivity;
 import com.ayah.docpatients.LoginActivity;
 import com.ayah.docpatients.MedicinesListActivity;
+import com.ayah.docpatients.PatientsListActivity;
 import com.ayah.docpatients.R;
 import com.ayah.docpatients.SignUpActivity;
 
@@ -51,7 +52,7 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), PatientActivity.class);
+                    Intent intent = new Intent(getContext(), PatientsListActivity.class);
                     getContext().startActivity(intent);
                 }
             });

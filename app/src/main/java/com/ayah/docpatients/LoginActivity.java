@@ -20,7 +20,10 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -74,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-
     private void dataHandler() {
         boolean isOk = true; // if all the fields filled well
         String email1 = email.getText().toString();
@@ -101,31 +103,61 @@ public class LoginActivity extends AppCompatActivity {
 
     private void signIn(final String email, String password) {
 
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        final FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+            public void onComplete(@NonNull final Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
                     //todo check if doctor logs in or patient
 
 
-                    if(email.equals("roza@gmail.com") || email.equals("aya.a@gmail.com")) {
+                    if (email.equals("roza@gmail.com") || email.equals("aya.a@gmail.com")) {
                         Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
                         startActivity(intent1);
-                    }
-                    else {
+                    } else {
                         Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
                         startActivity(intent1);
 
                     }
 
+//                    databaseReference.child("MyPatient").addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if (dataSnapshot.hasChild(email)) {
+//                                Intent intent2 = new Intent(LoginActivity.this, MedicinesListActivity.class);
+//                                startActivity(intent2);
+//                                finish();
+//                            }
+//
+//                            else {
+//                                databaseReference.child("MyDoctor").addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                        if (dataSnapshot.hasChild(email)) {
+//                                            Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
+//                                            startActivity(intent1);
+//                                            finish();
+//                                        }
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                                        Toast.makeText(LoginActivity.this, " signIn failed." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                                        task.getException().printStackTrace();
+//
+//                                    }
+//
+//
+//
 
 
-//                    if (ifDoctor.isChecked() && !ifPatient.isChecked()) {
+//
+// if (ifDoctor.isChecked() && !ifPatient.isChecked()) {
 //                        Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
 //                        startActivity(intent1);
 //                        finish();
@@ -143,14 +175,14 @@ public class LoginActivity extends AppCompatActivity {
 //                    }
 
 
-                }
+//        }
 
-                else {
-                    Toast.makeText(LoginActivity.this, " signIn failed." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    task.getException().printStackTrace();
+//                else {
+//                    Toast.makeText(LoginActivity.this, " signIn failed." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+//                    task.getException().printStackTrace();
+
                 }
             }
         });
-
     }
 }

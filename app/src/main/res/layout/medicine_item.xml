@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="268dp"
+            android:layout_width="326dp"
             android:layout_height="52dp"
             android:ems="10"
             android:hint="Medicine name"
@@ -26,17 +26,10 @@
             android:id="@+id/edit"
             android:layout_width="57dp"
             android:layout_height="52dp"
-            app:srcCompat="@mipmap/ic_launcher"
+            android:background="@drawable/e"
             tools:layout_editor_absoluteX="320dp"
             tools:layout_editor_absoluteY="464dp" />
 
-        <ImageButton
-            android:id="@+id/info"
-            android:layout_width="57dp"
-            android:layout_height="52dp"
-            app:srcCompat="@mipmap/ic_launcher"
-            tools:layout_editor_absoluteX="320dp"
-            tools:layout_editor_absoluteY="464dp" />
     </LinearLayout>
 
 
