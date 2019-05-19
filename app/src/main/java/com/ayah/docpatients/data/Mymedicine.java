@@ -71,6 +71,10 @@ public class Mymedicine {
                 '}';
     }
 
+    public String getOwner() {
+        return owner;
+    }
+
     public void setOwner(String email) {
         this.owner = owner;
 

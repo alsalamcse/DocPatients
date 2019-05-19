@@ -25,7 +25,6 @@ import com.google.firebase.database.ValueEventListener;
 public class MedicinesListActivity extends AppCompatActivity {
 
     private ListView medicineList;
-    private ImageButton addMedicine;
     private MymedicineAdapter mymedicineAdapter;
     private FloatingActionButton fabAdd;
 
@@ -36,7 +35,8 @@ public class MedicinesListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_medicines_list);
 
         medicineList = (ListView) findViewById(R.id.medicineList);
-        addMedicine = (FloatingActionButton) findViewById(R.id.fabAdd);
+        fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
+
 
         ArrayAdapter<String> mymedicineAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.patient_item);
         medicineList.setAdapter(mymedicineAdapter);

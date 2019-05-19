@@ -21,7 +21,8 @@
         app:layout_constraintTop_toBottomOf="@+id/patientList"
         app:layout_constraintVertical_bias="1.0"
         app:rippleColor="@color/common_google_signin_btn_text_light_default"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/ic_input_add"
+        android:focusable="true" />
 
     <ListView
         android:id="@+id/patientList"
@@ -53,7 +54,8 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/patientList"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnsearch"

@@ -106,52 +106,48 @@ public class LoginActivity extends AppCompatActivity {
         final FirebaseAuth auth = FirebaseAuth.getInstance();
 
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull final Task<AuthResult> task) {
-                if (task.isSuccessful()) {
+                    @Override
+                    public void onComplete(@NonNull final Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
 
-                    //todo check if doctor logs in or patient
+                            //todo check if doctor logs in or patient
+
+                            Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
 
 
-                    if (email.equals("roza@gmail.com") || email.equals("aya.a@gmail.com")) {
-                        Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
-                        startActivity(intent1);
-                    } else {
-                        Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
-                        Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
-                        startActivity(intent1);
 
+                            databaseReference=FirebaseDatabase.getInstance().getReference();
+                            databaseReference.child("MyPatient").orderByChild("emaill").equalTo(email).
+                                    addListenerForSingleValueEvent(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            if (dataSnapshot.exists()) {
+                                                Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
+                                                startActivity(intent1);
+                                            }
+                                            else
+                                            {
+                                                Intent intent1 = new Intent(LoginActivity.this,PatientsListActivity .class);
+                                                startActivity(intent1);
+
+                                            }
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+                                    });
+                        }
                     }
+                });
+    }
+}
 
-//                    databaseReference.child("MyPatient").addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if (dataSnapshot.hasChild(email)) {
-//                                Intent intent2 = new Intent(LoginActivity.this, MedicinesListActivity.class);
-//                                startActivity(intent2);
-//                                finish();
-//                            }
-//
-//                            else {
-//                                databaseReference.child("MyDoctor").addListenerForSingleValueEvent(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                                        if (dataSnapshot.hasChild(email)) {
-//                                            Intent intent1 = new Intent(LoginActivity.this, PatientsListActivity.class);
-//                                            startActivity(intent1);
-//                                            finish();
-//                                        }
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                                        Toast.makeText(LoginActivity.this, " signIn failed." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-//                                        task.getException().printStackTrace();
-//
-//                                    }
-//
+
+
+
 //
 //
 
@@ -181,8 +177,3 @@ public class LoginActivity extends AppCompatActivity {
 //                    Toast.makeText(LoginActivity.this, " signIn failed." + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
 //                    task.getException().printStackTrace();
 
-                }
-            }
-        });
-    }
-}

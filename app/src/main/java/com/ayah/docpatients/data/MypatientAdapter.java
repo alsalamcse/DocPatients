@@ -37,6 +37,7 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
 
 
             final Mypatient mypatient = getItem(position); // return data object number"pos"
+
             TextView id = convertView.findViewById(R.id.id);
 
             ImageButton edit = convertView.findViewById(R.id.edit);

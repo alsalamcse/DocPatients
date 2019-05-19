@@ -1,5 +1,6 @@
 package com.ayah.docpatients.Activities;
 
+import android.content.Intent;
 import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,8 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
+import com.ayah.docpatients.MedicinesListActivity;
+import com.ayah.docpatients.PatientsListActivity;
 import com.ayah.docpatients.R;
 import com.ayah.docpatients.data.MyDoctor;
 import com.ayah.docpatients.data.Mymedicine;
@@ -111,18 +114,20 @@ public class MedicineActivity extends AppCompatActivity {
             //to get uid(universal id)
 
 
-            String key = databaseReference.child("MyMedicines").push().getKey();
+            String key = databaseReference.child("MyMedicine").push().getKey();
             medicine.setKey(name1.replace(' ', '_'));
 
-            databaseReference.child("MyMedicines").child(name1.replace(' ', '_')).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
+            databaseReference.child("MyMedicine").child(name1.replace(' ', '_')).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
                     if (task.isSuccessful()) {
                         Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_LONG).show();
-                    } else {
+                        Intent i = new Intent(getBaseContext(), MedicinesListActivity.class);
+                        startActivity(i);
+
+                    } else
                         Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_LONG).show();
 
-                    }
                 }
             });
 

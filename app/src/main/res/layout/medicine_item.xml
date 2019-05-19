@@ -13,8 +13,8 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="326dp"
-            android:layout_height="52dp"
+            android:layout_width="339dp"
+            android:layout_height="40dp"
             android:ems="10"
             android:hint="Medicine name"
             android:inputType="textPersonName"
@@ -24,8 +24,8 @@
 
         <ImageButton
             android:id="@+id/edit"
-            android:layout_width="57dp"
-            android:layout_height="52dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:background="@drawable/e"
             tools:layout_editor_absoluteX="320dp"
             tools:layout_editor_absoluteY="464dp" />

@@ -27,12 +27,11 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
     public View getView(int position, View convertView,  ViewGroup parent) {
 
 
-
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout. medicine_item, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.medicine_item, parent, false);
 
 
-           final Mymedicine mymedicine = getItem(position); // return data object number"pos"
+            final Mymedicine mymedicine = getItem(position); // return data object number"pos"
 
             TextView name = convertView.findViewById(R.id.name);
 //            TextView disease = convertView.findViewById(R.id.disease);
@@ -41,7 +40,6 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
 //            TextView notes = convertView.findViewById(R.id.notes);
 
             ImageButton edit = convertView.findViewById(R.id.edit);
-
 
 
             // put the data of the objectr on the view
@@ -53,21 +51,22 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
 //            notes.setText(mymedicine.getNotes());
 
 
-
-        edit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MedicineActivity.class);
-                getContext().startActivity(intent);
-            }
-        });
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MedicineActivity.class);
+                    getContext().startActivity(intent);
+                }
+            });
 
 
 //            delete.setOnClickListener(new View.OnClickListener() {
 //                delete.setVisibility(View.GONE);
 //            }
+        }
+
+        return convertView;
     }
-        return convertView;}
-    }
+}
 
 
