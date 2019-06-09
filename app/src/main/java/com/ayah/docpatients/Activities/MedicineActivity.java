@@ -56,7 +56,7 @@ public class MedicineActivity extends AppCompatActivity {
         user=auth.getCurrentUser();
 
         Intent intent = getIntent();
-        if (intent != null)
+        if (intent != null && intent.getExtras() != null && intent.getExtras().get("details") != null)
         {
             mymedicine = (Mymedicine) intent.getExtras().get("details");
             name.setText(mymedicine.getName());

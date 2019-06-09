@@ -51,9 +51,15 @@ public class MedicinesListActivity extends AppCompatActivity {
         });
     }
 
-        private void getAllPatients() {
+    @Override
+    protected void onRestart() {
+        getAllPatients();
+        super.onRestart();
+    }
+
+    private void getAllPatients() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            reference.child("MyMedicines").addValueEventListener(new ValueEventListener() {
+            reference.child("MyMedicine").addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     mymedicineAdapter.clear();

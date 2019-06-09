@@ -109,7 +109,7 @@ public class PatientActivity extends AppCompatActivity {
 
                     if (mypatient != null)
                     {
-                        databaseReference.child("MyPatient").child(mypatient.getId()).setValue(mypatient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                         databaseReference.child("MyPatient").child(mypatient.getId()).setValue(mypatient).addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
