@@ -108,6 +108,9 @@ public class MedicineActivity extends AppCompatActivity {
         if (isok) {
             Mymedicine medicine = new Mymedicine();
 
+            String uidPatient = auth.getCurrentUser().getUid();
+            medicine.setUidPatient(uidPatient);
+
             medicine.setName(name1);
             medicine.setDisease(disease1);
             medicine.setMethod(method1);

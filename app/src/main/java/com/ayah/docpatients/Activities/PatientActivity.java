@@ -28,9 +28,9 @@ public class PatientActivity extends AppCompatActivity {
     private EditText id;
     private EditText email;
     private EditText phone;
-
-
     private Button save;
+
+
     FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference databaseReference;
@@ -47,13 +47,12 @@ public class PatientActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Mypatient mypatient = (Mypatient) intent.getExtras().get("details");
 
+
         first=findViewById(R.id.first);
         last=findViewById(R.id.last);
         id=findViewById(R.id.id);
         email=findViewById(R.id.email);
         phone=findViewById(R.id.phone);
-
-
         save=findViewById(R.id.save);
 
 
@@ -104,6 +103,11 @@ public class PatientActivity extends AppCompatActivity {
 
                 if (isok) {
                     Mypatient patient = new Mypatient();
+
+                    String uidDoc = auth.getCurrentUser().getUid();
+                    patient.setUidDoc(uidDoc);
+
+
                     patient.setFirst(first1);
                     patient.setLast(last1);
                     patient.setId(id1);
