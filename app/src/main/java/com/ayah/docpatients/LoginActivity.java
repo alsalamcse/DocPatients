@@ -136,6 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                         @Override
                                         public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            Toast.makeText(LoginActivity.this, "signIn Failed.", Toast.LENGTH_SHORT).show();
 
                                         }
                                     });

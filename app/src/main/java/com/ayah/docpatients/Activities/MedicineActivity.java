@@ -16,6 +16,7 @@ import com.ayah.docpatients.PatientsListActivity;
 import com.ayah.docpatients.R;
 import com.ayah.docpatients.data.MyDoctor;
 import com.ayah.docpatients.data.Mymedicine;
+import com.ayah.docpatients.data.Mypatient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,12 +47,22 @@ public class MedicineActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
 
+        Intent intent = getIntent();
+        Mymedicine mymedicine = (Mymedicine) intent.getExtras().get("details");
+
+
         name = findViewById(R.id.name);
         disease = findViewById(R.id.disease);
         method = findViewById(R.id.method);
         timesInDay = findViewById(R.id.timesInDay);
         notes = findViewById(R.id.notes);
         save = findViewById(R.id.save);
+
+        name.setText(mymedicine.getName());
+        disease.setText(mymedicine.getDisease());
+        method.setText(mymedicine.getMethod());
+        timesInDay.setText(mymedicine.getTimesInDay());
+        notes.setText(mymedicine.getNotes());
 
 
         save.setOnClickListener(new View.OnClickListener() {

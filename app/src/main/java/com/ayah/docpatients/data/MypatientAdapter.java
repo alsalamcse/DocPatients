@@ -53,16 +53,17 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), PatientsListActivity.class);
-                    getContext().startActivity(intent);
+                    Intent i1 = new Intent(getContext(), PatientActivity.class);
+                    i1.putExtra("details",mypatient);
+                    getContext().startActivity(i1);
                 }
             });
 
             medicines.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getContext(), MedicinesListActivity.class);
-                    getContext().startActivity(intent);
+                    Intent i2 = new Intent(getContext(), MedicinesListActivity.class);
+                    getContext().startActivity(i2);
                 }
             });
 

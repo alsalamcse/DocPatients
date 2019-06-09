@@ -44,6 +44,8 @@ public class PatientActivity extends AppCompatActivity {
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
 
+        Intent intent = getIntent();
+        Mypatient mypatient = (Mypatient) intent.getExtras().get("details");
 
         first=findViewById(R.id.first);
         last=findViewById(R.id.last);
@@ -52,6 +54,13 @@ public class PatientActivity extends AppCompatActivity {
         phone=findViewById(R.id.phone);
 
         save=findViewById(R.id.save);
+
+
+        first.setText(mypatient.getFirst());
+        last.setText(mypatient.getLast());
+        id.setText(mypatient.getId());
+        email.setText(mypatient.getEmaill());
+        phone.setText(mypatient.getPhone());
 
      save.setOnClickListener(new View.OnClickListener() {
          @Override

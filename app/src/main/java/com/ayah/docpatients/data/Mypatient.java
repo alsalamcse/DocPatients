@@ -1,6 +1,8 @@
 package com.ayah.docpatients.data;
 
-public class Mypatient {
+import java.io.Serializable;
+
+public class Mypatient implements Serializable {
 
     private String key;
     private String emaill;

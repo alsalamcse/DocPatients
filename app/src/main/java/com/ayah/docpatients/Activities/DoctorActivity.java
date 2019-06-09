@@ -1,5 +1,6 @@
 package com.ayah.docpatients.Activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 import com.ayah.docpatients.R;
 import com.ayah.docpatients.data.MyDoctor;
 import com.ayah.docpatients.data.Mymedicine;
+import com.ayah.docpatients.data.Mypatient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +42,8 @@ public class DoctorActivity extends AppCompatActivity {
 
         auth=FirebaseAuth.getInstance();
         user=auth.getCurrentUser();
+
+
 
         first = (EditText) findViewById(R.id.first);
         last = (EditText) findViewById(R.id.last);

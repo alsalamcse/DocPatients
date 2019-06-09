@@ -55,6 +55,8 @@ public class MymedicineAdapter extends ArrayAdapter<Mymedicine>
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(getContext(), MedicineActivity.class);
+                    intent.putExtra("details",mymedicine);
+
                     getContext().startActivity(intent);
                 }
             });
