@@ -34,6 +34,7 @@ public class MedicineActivity extends AppCompatActivity {
     private EditText timesInDay;
     private EditText notes;
     private Button save;
+    Mymedicine mymedicine;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -44,13 +45,6 @@ public class MedicineActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_medicine);
 
-        auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
-
-        Intent intent = getIntent();
-        Mymedicine mymedicine = (Mymedicine) intent.getExtras().get("details");
-
-
         name = findViewById(R.id.name);
         disease = findViewById(R.id.disease);
         method = findViewById(R.id.method);
@@ -58,11 +52,19 @@ public class MedicineActivity extends AppCompatActivity {
         notes = findViewById(R.id.notes);
         save = findViewById(R.id.save);
 
-        name.setText(mymedicine.getName());
-        disease.setText(mymedicine.getDisease());
-        method.setText(mymedicine.getMethod());
-        timesInDay.setText(mymedicine.getTimesInDay());
-        notes.setText(mymedicine.getNotes());
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
+
+        Intent intent = getIntent();
+        if (intent != null)
+        {
+            mymedicine = (Mymedicine) intent.getExtras().get("details");
+            name.setText(mymedicine.getName());
+            disease.setText(mymedicine.getDisease());
+            method.setText(mymedicine.getMethod());
+            timesInDay.setText(mymedicine.getTimesInDay());
+            notes.setText(mymedicine.getNotes());
+        }
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -106,46 +108,64 @@ public class MedicineActivity extends AppCompatActivity {
         }
 
         if (isok) {
-            Mymedicine medicine = new Mymedicine();
-
-            String uidPatient = auth.getCurrentUser().getUid();
-            medicine.setUidPatient(uidPatient);
-
-            medicine.setName(name1);
-            medicine.setDisease(disease1);
-            medicine.setMethod(method1);
-            medicine.setTimesInDay(timesInDay1);
-            medicine.setNotes(notes1);
-
-            //get user email to set is as the owner of this task
-            FirebaseAuth auth = FirebaseAuth.getInstance();
-            medicine.setOwner(auth.getCurrentUser().getEmail());
-
-            // to get the database root reference
-
-            databaseReference = FirebaseDatabase.getInstance().getReference();
-
-            //to get uid(universal id)
 
 
-            String key = databaseReference.child("MyMedicine").push().getKey();
-            medicine.setKey(name1.replace(' ', '_'));
+            if (mymedicine != null)
+            {
+                databaseReference.child("MyMedicine").child(mymedicine.getName()).setValue(mymedicine).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
+                            Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
+                            startActivity(i);
+                        } else
+                            Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
 
-            databaseReference.child("MyMedicine").child(name1.replace(' ', '_')).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if (task.isSuccessful()) {
-                        Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_LONG).show();
-                        Intent i = new Intent(getBaseContext(), MedicinesListActivity.class);
-                        startActivity(i);
+            else {
+                Mymedicine medicine = new Mymedicine();
 
-                    } else
-                        Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_LONG).show();
+                String uidPatient = auth.getCurrentUser().getUid();
+                medicine.setUidPatient(uidPatient);
 
-                }
-            });
+                medicine.setName(name1);
+                medicine.setDisease(disease1);
+                medicine.setMethod(method1);
+                medicine.setTimesInDay(timesInDay1);
+                medicine.setNotes(notes1);
+
+                //get user email to set is as the owner of this task
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                medicine.setOwner(auth.getCurrentUser().getEmail());
+
+                // to get the database root reference
+
+                databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                //to get uid(universal id)
 
 
+                String key = databaseReference.child("MyMedicine").push().getKey();
+                medicine.setKey(name1.replace(' ', '_'));
+
+                databaseReference.child("MyMedicine").child(name1.replace(' ', '_')).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_LONG).show();
+                            Intent i = new Intent(getBaseContext(), MedicinesListActivity.class);
+                            startActivity(i);
+
+                        } else
+                            Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+            }
         }
     }
 }

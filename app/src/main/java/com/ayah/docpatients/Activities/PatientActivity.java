@@ -29,7 +29,7 @@ public class PatientActivity extends AppCompatActivity {
     private EditText email;
     private EditText phone;
     private Button save;
-
+    Mypatient mypatient;
 
     FirebaseAuth auth;
     FirebaseUser user;
@@ -41,12 +41,6 @@ public class PatientActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient);
 
-        auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
-
-        Intent intent = getIntent();
-        Mypatient mypatient = (Mypatient) intent.getExtras().get("details");
-
 
         first=findViewById(R.id.first);
         last=findViewById(R.id.last);
@@ -55,12 +49,22 @@ public class PatientActivity extends AppCompatActivity {
         phone=findViewById(R.id.phone);
         save=findViewById(R.id.save);
 
+        auth=FirebaseAuth.getInstance();
+        user=auth.getCurrentUser();
 
-        first.setText(mypatient.getFirst());
-        last.setText(mypatient.getLast());
-        id.setText(mypatient.getId());
-        email.setText(mypatient.getEmaill());
-        phone.setText(mypatient.getPhone());
+        Intent intent = getIntent();
+        if (intent != null && intent.getExtras() != null && intent.getExtras().get("details") != null)
+        {
+            mypatient = (Mypatient) intent.getExtras().get("details");
+            first.setText(mypatient.getFirst());
+            last.setText(mypatient.getLast());
+            id.setText(mypatient.getId());
+            email.setText(mypatient.getEmaill());
+            phone.setText(mypatient.getPhone());
+
+        }
+
+
 
      save.setOnClickListener(new View.OnClickListener() {
          @Override
@@ -102,42 +106,59 @@ public class PatientActivity extends AppCompatActivity {
                 }
 
                 if (isok) {
-                    Mypatient patient = new Mypatient();
 
-                    String uidDoc = auth.getCurrentUser().getUid();
-                    patient.setUidDoc(uidDoc);
-
-
-                    patient.setFirst(first1);
-                    patient.setLast(last1);
-                    patient.setId(id1);
-                    patient.setEmaill(email1);
-                    patient.setPhone(phone1);
-
-                    //get user email to set is as the owner of this task
-                    FirebaseAuth auth = FirebaseAuth.getInstance();
-                    patient.setOwner(auth.getCurrentUser().getEmail());
-
-                    // to get the database root reference
-                    databaseReference = FirebaseDatabase.getInstance().getReference();
-
-                    String key=databaseReference.child("MyPatient").push().getKey();
-                    patient.setKey(id1);
-
-                    //to get uid(universal id)
-                    databaseReference.child("MyPatient").child(id1).setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(PatientActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
-                                startActivity(i);
+                    if (mypatient != null)
+                    {
+                        databaseReference.child("MyPatient").child(mypatient.getId()).setValue(mypatient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(PatientActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
+                                    startActivity(i);
+                                } else
+                                    Toast.makeText(PatientActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
                             }
-                            else
-                                Toast.makeText(PatientActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        });
+                    }
+                    else {
 
+
+                        Mypatient patient = new Mypatient();
+
+                        String uidDoc = auth.getCurrentUser().getUid();
+                        patient.setUidDoc(uidDoc);
+
+
+                        patient.setFirst(first1);
+                        patient.setLast(last1);
+                        patient.setId(id1);
+                        patient.setEmaill(email1);
+                        patient.setPhone(phone1);
+
+                        //get user email to set is as the owner of this task
+                        FirebaseAuth auth = FirebaseAuth.getInstance();
+                        patient.setOwner(auth.getCurrentUser().getEmail());
+
+                        // to get the database root reference
+                        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+                        String key = databaseReference.child("MyPatient").push().getKey();
+                        patient.setKey(id1);
+
+                        //to get uid(universal id)
+                        databaseReference.child("MyPatient").child(id1).setValue(patient).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(PatientActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
+                                    startActivity(i);
+                                } else
+                                    Toast.makeText(PatientActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
 
                 }
             }
