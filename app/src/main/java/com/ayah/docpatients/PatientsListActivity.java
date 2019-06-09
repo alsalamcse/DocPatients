@@ -41,11 +41,10 @@ public class PatientsListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patients_list);
-        etSearch=(EditText)findViewById(R.id.search);
-        btnSearch=(Button)findViewById(R.id.btnsearch);
+
+
         patientList = (ListView) findViewById(R.id.patientList);
         fabAdd = (FloatingActionButton)findViewById(R.id.fabAdd);
-//        addPatient = (ImageButton) findViewById(R.id.addPatient);
 
         mypatientAdapter = new MypatientAdapter(getBaseContext(),R.layout.patient_item);
         patientList.setAdapter(mypatientAdapter);

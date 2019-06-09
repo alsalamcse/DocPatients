@@ -15,12 +15,12 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:clickable="true"
+        android:focusable="true"
         app:backgroundTint="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/medicineList"
-        app:srcCompat="@android:drawable/ic_input_add"
-        android:focusable="true" />
+        app:srcCompat="@android:drawable/ic_input_add" />
 
     <ListView
         android:id="@+id/medicineList"

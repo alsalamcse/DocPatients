@@ -159,7 +159,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void updateUserProfile() {
-        //todo finish it Like addtask
 
         String email22 = email2.getText().toString();
         String first2 = first.getText().toString();

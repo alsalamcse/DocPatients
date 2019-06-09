@@ -110,7 +110,6 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull final Task<AuthResult> task) {
                         if (task.isSuccessful()) {
 
-                            //todo check if doctor logs in or patient
 
                             Toast.makeText(LoginActivity.this, "signIn Successful.", Toast.LENGTH_SHORT).show();
 
