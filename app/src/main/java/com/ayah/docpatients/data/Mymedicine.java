@@ -11,12 +11,14 @@ public class Mymedicine implements Serializable {
     private String timesInDay;
     private String notes;
     private String owner;
+    private String uidPatient;
 
 
 
     public String getKey() {
         return key;
     }
+
     public void setKey(String key) {
         this.key = key;
     }
@@ -61,16 +63,12 @@ public class Mymedicine implements Serializable {
         this.notes = notes;
     }
 
-    @Override
-    public String toString() {
-        return "Mymedicine{" +
-                "key='" + key + '\'' +
-                ", name='" + name + '\'' +
-                ", disease='" + disease + '\'' +
-                ", method='" + method + '\'' +
-                ", timesInDay=" + timesInDay +
-                ", notes='" + notes + '\'' +
-                '}';
+    public String getUidPatient() {
+        return uidPatient;
+    }
+
+    public void setUidPatient(String uidPatient) {
+        this.uidPatient = uidPatient;
     }
 
     public String getOwner() {
@@ -79,8 +77,21 @@ public class Mymedicine implements Serializable {
 
     public void setOwner(String email) {
         this.owner = owner;
+    }
 
 
+    @Override
+    public String toString() {
+        return "Mymedicine{" +
+                "key='" + key + '\'' +
+                ", name='" + name + '\'' +
+                ", disease='" + disease + '\'' +
+                ", method='" + method + '\'' +
+                ", timesInDay='" + timesInDay + '\'' +
+                ", notes='" + notes + '\'' +
+                ", owner='" + owner + '\'' +
+                ", uidPatient='" + uidPatient + '\'' +
+                '}';
     }
 }
 

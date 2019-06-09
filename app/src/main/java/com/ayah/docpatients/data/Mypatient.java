@@ -11,7 +11,7 @@ public class Mypatient implements Serializable {
     private String last;
     private String id;
     private String owner;
-
+    private String uidDoc;
 
 
     public String getKey() {
@@ -62,6 +62,22 @@ public class Mypatient implements Serializable {
         this.id = id;
     }
 
+    public String getUidDoc() {
+        return uidDoc;
+    }
+
+    public void setUidDoc(String uidDoc) {
+        this.uidDoc = uidDoc;
+    }
+
+    public String getOwner() {
+        return owner;
+    }
+
+    public void setOwner(String email) {
+        this.owner = owner;
+    }
+
     @Override
     public String toString() {
         return "Mypatient{" +
@@ -72,17 +88,7 @@ public class Mypatient implements Serializable {
                 ", last='" + last + '\'' +
                 ", id='" + id + '\'' +
                 ", owner='" + owner + '\'' +
+                ", uidDoc='" + uidDoc + '\'' +
                 '}';
     }
-    public String getOwner() {
-        return owner;
-    }
-
-    public void setOwner(String email) {
-        this.owner = owner;
-
-    }
 }
-
-
-

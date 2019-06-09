@@ -53,6 +53,7 @@ public class PatientActivity extends AppCompatActivity {
         email=findViewById(R.id.email);
         phone=findViewById(R.id.phone);
 
+
         save=findViewById(R.id.save);
 
 
