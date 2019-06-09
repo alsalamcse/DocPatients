@@ -42,6 +42,8 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
 
             ImageButton edit = convertView.findViewById(R.id.edit);
             ImageButton medicines = convertView.findViewById(R.id.medicines);
+
+
 //            ImageButton info = convertView.findViewById(R.id.info);
 
 
