@@ -45,8 +45,7 @@ public class MedicinesListActivity extends AppCompatActivity {
 
 
 
-        if (..) {
-            fabAdd.setVisibility(View.INVISIBLE); }
+        //todo  if (..) { fabAdd.setVisibility(View.INVISIBLE); }
 
 
 
