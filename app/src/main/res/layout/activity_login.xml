@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:hint="ID"
-            android:inputType="phone"
+            android:inputType="textPassword"
             tools:layout_editor_absoluteX="1dp"
             tools:layout_editor_absoluteY="92dp" />
 

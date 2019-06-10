@@ -126,7 +126,7 @@ public class SignUpActivity extends AppCompatActivity {
             phone.setError("Have to be at least 8 char");
             isOk = false; }
 
-        if ((id2.length()!= 9) || (id2.length()!= 9) ) {
+        if ((id2.length()< 7)  ) {
             id.setError("set your id");
             isOk = false;
         }
@@ -170,7 +170,7 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                             else
                             {
-                                Toast.makeText(getBaseContext(), "signUp Failed! your doctor have to add you first", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getBaseContext(), "signUp Failed! your doctor had not to add you first", Toast.LENGTH_SHORT).show();
 
                             }
 
