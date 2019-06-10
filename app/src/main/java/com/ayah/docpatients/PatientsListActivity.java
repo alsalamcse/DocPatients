@@ -61,7 +61,9 @@ public class PatientsListActivity extends AppCompatActivity {
 
     private void getAllPatients() {
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-        reference.child("MyPatient").addValueEventListener(new ValueEventListener() {
+        auth2= FirebaseAuth.getInstance();
+        String uidDoc= auth2.getUid();
+        reference.child("MyPatient").orderByChild("uidDoc").equalTo(uidDoc).addValueEventListener(new ValueEventListener() {
 
 
             @Override
@@ -82,26 +84,4 @@ public class PatientsListActivity extends AppCompatActivity {
 
         });
     }
-
-//    public void searchMethod(){
-//        String searchPlain=etSearch.getText().toString();
-//        databaseReference.child("MyPatient").orderByChild("id").equalTo(searchPlain).addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                mypatientAdapter.clear();
-//                for (DataSnapshot dataSnapshot1:dataSnapshot.getChildren()){
-//                    String id=dataSnapshot1.getValue().toString();
-//                    mypatientAdapter.add();
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//                Toast.makeText(PatientsListActivity.this, "searching failed", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//
-//    }
-
 }

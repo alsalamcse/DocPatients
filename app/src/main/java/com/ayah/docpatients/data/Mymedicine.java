@@ -10,7 +10,7 @@ public class Mymedicine implements Serializable {
     private String method;
     private String timesInDay;
     private String notes;
-    private String owner;
+    private String docUid;
     private String uidPatient;
 
 
@@ -71,12 +71,12 @@ public class Mymedicine implements Serializable {
         this.uidPatient = uidPatient;
     }
 
-    public String getOwner() {
-        return owner;
+    public String getDocUid() {
+        return docUid;
     }
 
-    public void setOwner(String email) {
-        this.owner = owner;
+    public void setDocUid(String email) {
+        this.docUid = docUid;
     }
 
 
@@ -89,7 +89,7 @@ public class Mymedicine implements Serializable {
                 ", method='" + method + '\'' +
                 ", timesInDay='" + timesInDay + '\'' +
                 ", notes='" + notes + '\'' +
-                ", owner='" + owner + '\'' +
+                ", docUid='" + docUid + '\'' +
                 ", uidPatient='" + uidPatient + '\'' +
                 '}';
     }

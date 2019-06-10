@@ -38,14 +38,36 @@ public class MedicinesListActivity extends AppCompatActivity {
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
 
 
-        ArrayAdapter<String> mymedicineAdapter = new ArrayAdapter<String>(getBaseContext(), R.layout.patient_item);
+        mymedicineAdapter = new MymedicineAdapter(getBaseContext(), R.layout.patient_item) ;
         medicineList.setAdapter(mymedicineAdapter);
+
+        getAllPatients();
+
+//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//        databaseReference.child("MyPatient").orderByChild("emaill").equalTo(email).
+//                addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                        if (dataSnapshot.exists()) {
+//                            fabAdd.setVisibility(View.GONE);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                    }
 
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MedicinesListActivity.this, MedicineActivity.class);
+                Intent i = getIntent();
+                if (i != null && i.getExtras() != null && i.getExtras().getString("patientId") != null) {
+                    String id = i.getExtras().getString("patientId");
+                    intent.putExtra("patientId", id);
+                }
                 startActivity(intent);
             }
         });
@@ -59,22 +81,28 @@ public class MedicinesListActivity extends AppCompatActivity {
 
     private void getAllPatients() {
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference();
-            reference.child("MyMedicine").addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    mymedicineAdapter.clear();
-                    for (DataSnapshot d : dataSnapshot.getChildren()) {
-                        Mymedicine mymedicine = d.getValue(Mymedicine.class);
-                        mymedicineAdapter.add(mymedicine);
+            Intent i = getIntent();
+            if (i != null && i.getExtras() != null && i.getExtras().getString("patientId") != null)
+            {
+                String id = i.getExtras().getString("patientId");
+                reference.child("MyMedicine").orderByChild("uidPatient").equalTo(id).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        mymedicineAdapter.clear();
+                        for (DataSnapshot d : dataSnapshot.getChildren()) {
+                            Mymedicine mymedicine = d.getValue(Mymedicine.class);
+                            mymedicineAdapter.add(mymedicine);
+                        }
+                        mymedicineAdapter.notifyDataSetChanged();
                     }
-                    mymedicineAdapter.notifyDataSetChanged();
-                }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(MedicinesListActivity.this, "onCancelled", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        Toast.makeText(MedicinesListActivity.this, "onCancelled", Toast.LENGTH_SHORT).show();
 
-                }
-            });
+                    }
+                });
+            }
+
         }
 }

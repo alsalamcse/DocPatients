@@ -29,7 +29,7 @@
         android:id="@+id/medicines"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:background="@mipmap/ic_launcher"
+        android:background="@drawable/medicine"
         tools:layout_editor_absoluteX="320dp"
         tools:layout_editor_absoluteY="464dp" />
 

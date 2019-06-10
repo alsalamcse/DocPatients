@@ -43,11 +43,7 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
             ImageButton edit = convertView.findViewById(R.id.edit);
             ImageButton medicines = convertView.findViewById(R.id.medicines);
 
-
-//            ImageButton info = convertView.findViewById(R.id.info);
-
-
-            // pout the data of the objectr on the view
+            // put the data of the objectr on the view
 
             id.setText(mypatient.getId());
 
@@ -65,13 +61,10 @@ public class MypatientAdapter extends ArrayAdapter<Mypatient> {
                 @Override
                 public void onClick(View v) {
                     Intent i2 = new Intent(getContext(), MedicinesListActivity.class);
+                    i2.putExtra("patientId",mypatient.getId());
                     getContext().startActivity(i2);
                 }
             });
-
-//            delete.setOnClickListener(new View.OnClickListener() {
-//                delete.setVisibility(View.GONE);
-//            }
         }
     return convertView;
     }

@@ -53,7 +53,7 @@ public class PatientActivity extends AppCompatActivity {
         user=auth.getCurrentUser();
 
         Intent intent = getIntent();
-        if (intent != null && intent.getExtras() != null && intent.getExtras().get("details") != null)
+        if (intent != null && intent.getExtras() != null && intent.getExtras().get("details") != null )
         {
             mypatient = (Mypatient) intent.getExtras().get("details");
             first.setText(mypatient.getFirst());
@@ -152,8 +152,7 @@ public class PatientActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
                                     Toast.makeText(PatientActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
-                                    startActivity(i);
+                                   finish();
                                 } else
                                     Toast.makeText(PatientActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
                             }

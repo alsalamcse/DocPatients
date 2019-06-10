@@ -1,30 +1,24 @@
 package com.ayah.docpatients.Activities;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.SeekBar;
 import android.widget.Toast;
 
 import com.ayah.docpatients.MedicinesListActivity;
 import com.ayah.docpatients.PatientsListActivity;
 import com.ayah.docpatients.R;
-import com.ayah.docpatients.data.MyDoctor;
 import com.ayah.docpatients.data.Mymedicine;
-import com.ayah.docpatients.data.Mypatient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Date;
 
 public class MedicineActivity extends AppCompatActivity {
 
@@ -36,7 +30,6 @@ public class MedicineActivity extends AppCompatActivity {
     private Button save;
     Mymedicine mymedicine;
 
-    FirebaseAuth auth;
     FirebaseUser user;
     DatabaseReference databaseReference;
 
@@ -52,8 +45,7 @@ public class MedicineActivity extends AppCompatActivity {
         notes = findViewById(R.id.notes);
         save = findViewById(R.id.save);
 
-        auth=FirebaseAuth.getInstance();
-        user=auth.getCurrentUser();
+
 
         Intent intent = getIntent();
         if (intent != null && intent.getExtras() != null && intent.getExtras().get("details") != null)
@@ -112,7 +104,7 @@ public class MedicineActivity extends AppCompatActivity {
 
             if (mymedicine != null)
             {
-                databaseReference.child("MyMedicine").child(mymedicine.getName()).setValue(mymedicine).addOnCompleteListener(new OnCompleteListener<Void>() {
+                databaseReference.child("MyMedicine").child(mymedicine.getKey()).setValue(mymedicine).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
@@ -126,44 +118,48 @@ public class MedicineActivity extends AppCompatActivity {
             }
 
             else {
-                Mymedicine medicine = new Mymedicine();
+                Intent i = getIntent();
+                if (i != null && i.getExtras() != null && i.getExtras().getString("patientId") != null) {
+                    String id = i.getExtras().getString("patientId");
 
-                String uidPatient = auth.getCurrentUser().getUid();
-                medicine.setUidPatient(uidPatient);
+                    Mymedicine medicine = new Mymedicine();
+                    FirebaseAuth auth = FirebaseAuth.getInstance();
 
-                medicine.setName(name1);
-                medicine.setDisease(disease1);
-                medicine.setMethod(method1);
-                medicine.setTimesInDay(timesInDay1);
-                medicine.setNotes(notes1);
+                    medicine.setUidPatient(id);
+                    medicine.setDocUid(auth.getCurrentUser().getUid());
 
-                //get user email to set is as the owner of this task
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                medicine.setOwner(auth.getCurrentUser().getEmail());
+                    medicine.setName(name1);
+                    medicine.setDisease(disease1);
+                    medicine.setMethod(method1);
+                    medicine.setTimesInDay(timesInDay1);
+                    medicine.setNotes(notes1);
 
-                // to get the database root reference
-
-                databaseReference = FirebaseDatabase.getInstance().getReference();
-
-                //to get uid(universal id)
+                    //get user email to set is as the owner of this task
 
 
-                String key = databaseReference.child("MyMedicine").push().getKey();
-                medicine.setKey(name1.replace(' ', '_'));
+                    // to get the database root reference
 
-                databaseReference.child("MyMedicine").child(name1.replace(' ', '_')).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_LONG).show();
-                            Intent i = new Intent(getBaseContext(), MedicinesListActivity.class);
-                            startActivity(i);
+                    databaseReference = FirebaseDatabase.getInstance().getReference();
 
-                        } else
-                            Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_LONG).show();
+                    //to get uid(universal id)
 
-                    }
-                });
+
+                    String key = databaseReference.child("MyMedicine").push().getKey();
+                    medicine.setKey(key);
+
+                    databaseReference.child("MyMedicine").child(key).setValue(medicine).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_LONG).show();
+                               finish();
+
+                            } else
+                                Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_LONG).show();
+
+                        }
+                    });
+                }
 
             }
         }
