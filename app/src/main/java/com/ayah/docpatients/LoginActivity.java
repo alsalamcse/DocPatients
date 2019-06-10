@@ -31,6 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     private EditText password;
     private Button signup;
     private Button signin;
+    private EditText id2;
+
 //    private CheckBox ifDoctor, ifPatient;
 
     private DatabaseReference databaseReference;
@@ -45,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
 //        ifDoctor = (CheckBox)findViewById(R.id.ifDoctor);
 //        ifPatient = (CheckBox)findViewById(R.id.ifPatient);
 
+        id2 = (EditText) findViewById(R.id.id2);
         email = (EditText) findViewById(R.id.email);
         password = (EditText) findViewById(R.id.password);
         signin = (Button) findViewById(R.id.signin);
@@ -81,6 +84,8 @@ public class LoginActivity extends AppCompatActivity {
         boolean isOk = true; // if all the fields filled well
         String email1 = email.getText().toString();
         String password1 = password.getText().toString();
+        String id21 = id2.getText().toString();
+
 
         if (email1.length() < 4 || email1.indexOf('@') < 0 || email1.indexOf('.') < 0) {
             email.setError("Wrong Email");
@@ -94,6 +99,10 @@ public class LoginActivity extends AppCompatActivity {
 
         if (password1.length() < 8) {
             password.setError("wrong password");
+            isOk = false;
+        }
+        if (id21.length() < 8) {
+            id2.setError("wrong password");
             isOk = false;
         }
 

@@ -31,6 +31,16 @@
             tools:layout_editor_absoluteX="2dp"
             tools:layout_editor_absoluteY="48dp" />
 
+        <EditText
+            android:id="@+id/id2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="ID"
+            android:inputType="phone"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="92dp" />
+
         <Button
             android:id="@+id/signin"
             android:layout_width="match_parent"

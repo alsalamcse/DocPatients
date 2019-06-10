@@ -43,20 +43,27 @@ public class MedicinesListActivity extends AppCompatActivity {
 
         getAllPatients();
 
-//        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//        databaseReference.child("MyPatient").orderByChild("emaill").equalTo(email).
-//                addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        if (dataSnapshot.exists()) {
-//                            fabAdd.setVisibility(View.GONE);
+//        private void ForPatients()
+//        {
+//            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+//            databaseReference.child("MyPatient").orderByChild("emaill").equalTo(email).
+//                    addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//
+//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                            if (dataSnapshot.exists()) {
+//                                fabAdd.setVisibility(View.INVISIBLE);
+//                            }
+//                            else
+//                                fabAdd.setVisibility(View.VISIBLE);
+//                        }
+//
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError databaseError) {
 //                        }
 //                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//                    }
+//        }
+
 
 
         fabAdd.setOnClickListener(new View.OnClickListener() {
