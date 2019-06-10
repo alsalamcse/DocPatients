@@ -38,31 +38,15 @@ public class MedicinesListActivity extends AppCompatActivity {
         fabAdd = (FloatingActionButton) findViewById(R.id.fabAdd);
 
 
-        mymedicineAdapter = new MymedicineAdapter(getBaseContext(), R.layout.patient_item) ;
+        mymedicineAdapter = new MymedicineAdapter(getBaseContext(), R.layout.patient_item);
         medicineList.setAdapter(mymedicineAdapter);
 
         getAllPatients();
 
-//        private void ForPatients()
-//        {
-//            DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
-//            databaseReference.child("MyPatient").orderByChild("emaill").equalTo(email).
-//                    addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//
-//                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                            if (dataSnapshot.exists()) {
-//                                fabAdd.setVisibility(View.INVISIBLE);
-//                            }
-//                            else
-//                                fabAdd.setVisibility(View.VISIBLE);
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError databaseError) {
-//                        }
-//                    }
-//        }
+
+
+        if (..) {
+            fabAdd.setVisibility(View.INVISIBLE); }
 
 
 

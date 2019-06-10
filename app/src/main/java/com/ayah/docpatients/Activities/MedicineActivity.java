@@ -109,8 +109,7 @@ public class MedicineActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(MedicineActivity.this, "Add Successful", Toast.LENGTH_SHORT).show();
-                            Intent i = new Intent(getBaseContext(), PatientsListActivity.class);
-                            startActivity(i);
+                            finish();
                         } else
                             Toast.makeText(MedicineActivity.this, "Add Failed", Toast.LENGTH_SHORT).show();
                     }

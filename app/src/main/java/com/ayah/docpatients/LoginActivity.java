@@ -131,6 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
                                                 Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
+                                                intent1.putExtra("isPatient",true);
                                                 startActivity(intent1);
                                             }
                                             else
