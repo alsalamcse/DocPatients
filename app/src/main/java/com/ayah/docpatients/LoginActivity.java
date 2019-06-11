@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.ayah.docpatients.Activities.MedicineActivity;
 import com.ayah.docpatients.data.MyDoctor;
+import com.ayah.docpatients.data.Mypatient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -131,8 +132,11 @@ public class LoginActivity extends AppCompatActivity {
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             if (dataSnapshot.exists()) {
                                                 Intent intent1 = new Intent(LoginActivity.this, MedicinesListActivity.class);
+                                                Mypatient mypatient =  dataSnapshot.getChildren().iterator().next().getValue(Mypatient.class);
                                                 intent1.putExtra("isPatient",true);
+                                                intent1.putExtra("patientId",mypatient.getId());
                                                 startActivity(intent1);
+
                                             }
                                             else
                                             {
