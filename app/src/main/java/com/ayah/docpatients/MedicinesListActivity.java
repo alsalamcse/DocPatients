@@ -45,10 +45,10 @@ public class MedicinesListActivity extends AppCompatActivity {
 
 
 
-        if ("" .equals("isPatient"))
-        {
-            fabAdd.setEnabled(false);
-        }
+//        if ("" .equals("isPatient"))
+//        {
+//            fabAdd.setEnabled(false);
+//        }
 
         //todo  if (..) { fabAdd.setVisibility(View.INVISIBLE); }
 
